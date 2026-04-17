@@ -27,3 +27,7 @@ threshold_value, binary_mask = cv2.threshold(
 print("Otsu Threshold Value:", threshold_value)
 
 cv2.imwrite(os.path.join(OUT_DIR, "binary_mask.png"), binary_mask)
+
+foreground = cv2.bitwise_and(gray, gray, mask=binary_mask)
+
+cv2.imwrite(os.path.join(OUT_DIR, "foreground.png"), foreground)
