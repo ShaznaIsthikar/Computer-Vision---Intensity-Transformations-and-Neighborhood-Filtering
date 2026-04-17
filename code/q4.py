@@ -31,3 +31,12 @@ cv2.imwrite(os.path.join(OUT_DIR, "binary_mask.png"), binary_mask)
 foreground = cv2.bitwise_and(gray, gray, mask=binary_mask)
 
 cv2.imwrite(os.path.join(OUT_DIR, "foreground.png"), foreground)
+
+# Apply histogram equalization
+equalized = cv2.equalizeHist(gray)
+
+# Apply only on foreground
+result = gray.copy()
+result[binary_mask == 255] = equalized[binary_mask == 255]
+
+cv2.imwrite(os.path.join(OUT_DIR, "foreground_equalized.png"), result)
