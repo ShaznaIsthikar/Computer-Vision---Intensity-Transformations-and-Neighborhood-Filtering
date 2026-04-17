@@ -17,3 +17,21 @@ def gaussian_kernel(size=5, sigma=2):
 
 kernel_5x5 = gaussian_kernel(5, 2)
 print(kernel_5x5)
+
+# (b) Visualize a 51×51 Gaussian kernel as a 3D surface
+
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+kernel_51 = gaussian_kernel(51, 2)
+
+x = np.arange(51)
+y = np.arange(51)
+X, Y = np.meshgrid(x, y)
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(X, Y, kernel_51)
+
+ax.set_title("3D Gaussian Kernel (51x51, σ=2)")
+plt.show()
