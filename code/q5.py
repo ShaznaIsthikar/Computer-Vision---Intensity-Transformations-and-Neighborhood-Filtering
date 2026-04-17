@@ -35,3 +35,17 @@ ax.plot_surface(X, Y, kernel_51)
 
 ax.set_title("3D Gaussian Kernel (51x51, σ=2)")
 plt.show()
+
+# (c) Apply Gaussian smoothing using manually computed kernel
+
+import cv2
+
+def apply_gaussian_manual(image, kernel):
+    return cv2.filter2D(image, -1, kernel)
+
+img = cv2.imread("images/runway.png", cv2.IMREAD_GRAYSCALE)
+
+kernel = gaussian_kernel(5, 2)
+smoothed_manual = apply_gaussian_manual(img, kernel)
+
+cv2.imwrite("outputs/q5/manual_gaussian.png", smoothed_manual)
