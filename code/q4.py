@@ -18,3 +18,12 @@ print("Image object:", img)
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 cv2.imwrite(os.path.join(OUT_DIR, "gray.png"), gray)
+
+# Otsu thresholding
+threshold_value, binary_mask = cv2.threshold(
+    gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU
+)
+
+print("Otsu Threshold Value:", threshold_value)
+
+cv2.imwrite(os.path.join(OUT_DIR, "binary_mask.png"), binary_mask)
