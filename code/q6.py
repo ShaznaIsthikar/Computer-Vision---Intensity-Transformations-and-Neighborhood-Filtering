@@ -68,3 +68,23 @@ def gaussian_derivative_kernels(size=5, sigma=2):
 Gx, Gy = gaussian_derivative_kernels()
 print("Gx:\n", Gx)
 print("Gy:\n", Gy)
+
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+def visualize_derivative(size=51, sigma=2):
+    k = size // 2
+    x = np.arange(-k, k+1)
+    y = np.arange(-k, k+1)
+    X, Y = np.meshgrid(x, y)
+
+    G = (1 / (2 * np.pi * sigma**2)) * np.exp(-(X**2 + Y**2) / (2 * sigma**2))
+    Gx = -(X / sigma**2) * G
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.plot_surface(X, Y, Gx)
+    ax.set_title("Derivative of Gaussian (X-direction)")
+    plt.show()
+
+visualize_derivative()
