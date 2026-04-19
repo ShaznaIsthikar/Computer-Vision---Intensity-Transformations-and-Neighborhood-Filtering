@@ -92,3 +92,20 @@ def visualize_derivative(size=51, sigma=2):
 
 
 visualize_derivative()
+
+import cv2
+
+img = cv2.imread("images/runway.png", cv2.IMREAD_GRAYSCALE)
+
+Gx, Gy = gaussian_derivative_kernels()
+
+grad_x = cv2.filter2D(img, -1, Gx)
+grad_y = cv2.filter2D(img, -1, Gy)
+
+# Gradient magnitude
+grad_mag = np.sqrt(grad_x.astype(float)**2 + grad_y.astype(float)**2)
+grad_mag = cv2.normalize(grad_mag, None, 0, 255, cv2.NORM_MINMAX)
+
+cv2.imwrite(os.path.join(OUT_DIR, "grad_x.png"), grad_x)
+cv2.imwrite(os.path.join(OUT_DIR, "grad_y.png"), grad_y)
+cv2.imwrite(os.path.join(OUT_DIR, "grad_mag.png"), grad_mag)
