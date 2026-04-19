@@ -1,0 +1,10 @@
+Derivative of Gaussian symbolic verification
+
+G(x,y) = exp((-x**2 - y**2)/(2*sigma**2))/(2*pi*sigma**2)
+
+dG/dx = -x*exp((-x**2 - y**2)/(2*sigma**2))/(2*pi*sigma**4)
+
+dG/dy = -y*exp((-x**2 - y**2)/(2*sigma**2))/(2*pi*sigma**4)
+
+simplify(dG/dx - (-(x/sigma^2)G)) = 0
+simplify(dG/dy - (-(y/sigma^2)G)) = 0
