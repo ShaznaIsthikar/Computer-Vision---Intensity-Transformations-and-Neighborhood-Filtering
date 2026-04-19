@@ -87,4 +87,8 @@ def visualize_derivative(size=51, sigma=2):
     ax.set_title("Derivative of Gaussian (X-direction)")
     plt.show()
 
+    save_path = os.path.join(OUT_DIR, "dog_3d_surface.png")
+    plt.savefig(save_path, dpi=200)
+
+
 visualize_derivative()
