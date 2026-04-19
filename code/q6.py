@@ -41,5 +41,30 @@ def verify_derivative_of_gaussian():
 
     print("Saved symbolic result to:", os.path.join(OUT_DIR, "part_a_verification.txt"))
 
-    
+
 verify_derivative_of_gaussian()
+
+import numpy as np
+
+def gaussian_derivative_kernels(size=5, sigma=2):
+    k = size // 2
+    x = np.arange(-k, k+1)
+    y = np.arange(-k, k+1)
+    X, Y = np.meshgrid(x, y)
+
+    # Gaussian
+    G = (1 / (2 * np.pi * sigma**2)) * np.exp(-(X**2 + Y**2) / (2 * sigma**2))
+
+    # Derivatives
+    Gx = -(X / sigma**2) * G
+    Gy = -(Y / sigma**2) * G
+
+    # Normalize (sum of absolute values = 1)
+    Gx = Gx / np.sum(np.abs(Gx))
+    Gy = Gy / np.sum(np.abs(Gy))
+
+    return Gx, Gy
+
+Gx, Gy = gaussian_derivative_kernels()
+print("Gx:\n", Gx)
+print("Gy:\n", Gy)
