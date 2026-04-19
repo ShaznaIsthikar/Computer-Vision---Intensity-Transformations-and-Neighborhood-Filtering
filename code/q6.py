@@ -109,3 +109,14 @@ grad_mag = cv2.normalize(grad_mag, None, 0, 255, cv2.NORM_MINMAX)
 cv2.imwrite(os.path.join(OUT_DIR, "grad_x.png"), grad_x)
 cv2.imwrite(os.path.join(OUT_DIR, "grad_y.png"), grad_y)
 cv2.imwrite(os.path.join(OUT_DIR, "grad_mag.png"), grad_mag)
+
+sobel_x = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=5)
+sobel_y = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=5)
+
+sobel_mag = np.sqrt(sobel_x**2 + sobel_y**2)
+sobel_mag = cv2.normalize(sobel_mag, None, 0, 255, cv2.NORM_MINMAX)
+
+cv2.imwrite(os.path.join(OUT_DIR, "sobel_x.png"), sobel_x)
+cv2.imwrite(os.path.join(OUT_DIR, "sobel_y.png"), sobel_y)
+cv2.imwrite(os.path.join(OUT_DIR, "sobel_mag.png"), sobel_mag)
+
